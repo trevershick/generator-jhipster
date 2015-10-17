@@ -1,3 +1,6 @@
+/* exported mockApiAccountCall,mockI18nCalls */
+/* globals inject */
+'use strict';
 function mockApiAccountCall() {
     inject(function($httpBackend) {
         $httpBackend.whenGET(/api\/account.*/).respond({});

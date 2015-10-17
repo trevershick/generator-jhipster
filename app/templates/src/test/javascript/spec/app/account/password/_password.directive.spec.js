@@ -1,3 +1,4 @@
+/* globals describe,it,beforeEach,afterEach,inject,expect,dump */
 'use strict';
 
 describe('Directive Tests ', function () {
@@ -7,12 +8,12 @@ describe('Directive Tests ', function () {
     beforeEach(inject(function($compile, $rootScope, $injector) {
 <% if (websocket == 'spring-websocket' && authenticationType == 'oauth2') { -%>
         spyOn(localStorage, 'getItem').and.callFake(function (key) {
-            return "{\"access_token\":\"79b4ddc8-eb1c-4e7f-82e0-0dc2038a56fd\"}";
+            return '{\'access_token\':\'79b4ddc8-eb1c-4e7f-82e0-0dc2038a56fd\'}';
         });
 <% } -%>
         $httpBackend = $injector.get('$httpBackend');
 
-        var html = '<password-strength-bar password-to-check="password"></password-strength-bar>';
+        var html = '<password-strength-bar password-to-check=\'password\'></password-strength-bar>';
         scope = $rootScope.$new();
         elm = angular.element(html);
         $compile(elm)(scope);
@@ -21,7 +22,7 @@ describe('Directive Tests ', function () {
         $httpBackend.whenGET('scripts/app/main/main.html').respond({});
         $httpBackend.whenGET('scripts/components/navbar/navbar.html').respond({});
 <% if (enableTranslation) { -%>
-        var globalJson = new RegExp('i18n\/.*\/global.json')
+        var globalJson = new RegExp('i18n\/.*\/global.json');
         var mainJson = new RegExp('i18n\/.*\/main.json');
         $httpBackend.whenGET(globalJson).respond({});
         $httpBackend.whenGET(mainJson).respond({});
@@ -35,14 +36,14 @@ describe('Directive Tests ', function () {
     });
 
     describe('Password strength', function () {
-        it("Should display the password strength bar", function() {
+        it('Should display the password strength bar', function() {
             expect(elm.find('ul').length).toEqual(1);
             expect(elm.find('li').length).toEqual(5);
         });
 
-        it("Should change the first 2 points of the strength bar", function() {
+        it('Should change the first 2 points of the strength bar', function() {
             scope.$apply(function() {
-                scope.password = "morethan5chars"; // that should trigger the 2 first points
+                scope.password = 'morethan5chars'; // that should trigger the 2 first points
             });
 
             var firstpointStyle = elm.find('ul').children('li')[0].getAttribute('style');
@@ -55,9 +56,9 @@ describe('Directive Tests ', function () {
             expect(thirdpointStyle).toContain('background-color: rgb(221, 221, 221)');
         });
 
-        it("Should change the first 4 points of the strength bar", function() {
+        it('Should change the first 4 points of the strength bar', function() {
             scope.$apply(function() {
-                scope.password = "mo5ch$=!"; // that should trigger the 3 first points
+                scope.password = 'mo5ch$=!'; // that should trigger the 3 first points
             });
 
             var firstpointStyle = elm.find('ul').children('li')[0].getAttribute('style');

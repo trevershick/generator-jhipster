@@ -1,3 +1,4 @@
+/* globals describe,it,beforeEach,inject,expect,jasmine,mockApiAccountCall,mockI18nCalls */
 'use strict';
 
 describe('Controller Tests', function() {
@@ -12,10 +13,10 @@ describe('Controller Tests', function() {
         var createController; // local utility function
 
         var sessions = [{
-            formattedTokenDate: "15 October 2015",
-            ipAddress: "0:0:0:0:0:0:0:1",
-            series: "xxxxxx==",
-            userAgent: "Mozilla/5.0"
+            formattedTokenDate: '15 October 2015',
+            ipAddress: '0:0:0:0:0:0:0:1',
+            series: 'xxxxxx==',
+            userAgent: 'Mozilla/5.0'
         }];
 
         beforeEach(inject(function($injector) {

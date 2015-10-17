@@ -81,11 +81,11 @@ angular.module('<%=angularAppName%>')
                                 };
                             }
                         }
-                    }).result.then(function(result) {
+                    }).result.then(function(/*result*/) {
                         $state.go('<%= entityInstance %>', null, { reload: true });
                     }, function() {
                         $state.go('<%= entityInstance %>');
-                    })
+                    });
                 }]
             })
             .state('<%= entityInstance %>.edit', {
@@ -104,11 +104,11 @@ angular.module('<%=angularAppName%>')
                                 return <%= entityClass %>.get({id : $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
+                    }).result.then(function(/*result*/) {
                         $state.go('<%= entityInstance %>', null, { reload: true });
                     }, function() {
                         $state.go('^');
-                    })
+                    });
                 }]
             });
     });

@@ -38,7 +38,7 @@ angular.module('<%=angularAppName%>').controller('<%= entityClass %>DialogContro
         };
 
         $scope.save = function () {
-            if ($scope.<%= entityInstance %>.id != null) {
+            if ($scope.<%= entityInstance %>.id !== null) {
                 <%= entityClass %>.update($scope.<%= entityInstance %>, onSaveFinished);
             } else {
                 <%= entityClass %>.save($scope.<%= entityInstance %>, onSaveFinished);
@@ -79,7 +79,7 @@ angular.module('<%=angularAppName%>').controller('<%= entityClass %>DialogContro
                 return base64String.length / 4 * 3 - paddingSize(base64String);
             }
             function formatAsBytes(size) {
-                return size.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " bytes";
+                return size.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' bytes';
             }
 
             return formatAsBytes(size(base64String));
@@ -87,12 +87,14 @@ angular.module('<%=angularAppName%>').controller('<%= entityClass %>DialogContro
 
         $scope.set<%= fields[fieldId].fieldNameCapitalized %> = function ($file, <%= entityInstance %>) {
             <%_ if (fields[fieldId].fieldTypeBlobContent == 'image') { _%>
-            if ($file && $file.$error == 'pattern') {
+            if ($file && $file.$error === 'pattern') {
                 return;
             }
             <%_ } _%>
             if ($file) {
+                /* jshint -W117 */
                 var fileReader = new FileReader();
+                /* jshint +W117 */
                 fileReader.readAsDataURL($file);
                 fileReader.onload = function (e) {
                     var base64Data = e.target.result.substr(e.target.result.indexOf('base64,') + 'base64,'.length);

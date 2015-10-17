@@ -1,3 +1,4 @@
+/* globals $ */
 'use strict';
 
 angular.module('<%=angularAppName%>')
@@ -131,7 +132,7 @@ angular.module('<%=angularAppName%>')
                 return base64String.length / 4 * 3 - paddingSize(base64String);
             }
             function formatAsBytes(size) {
-                return size.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " bytes";
+                return size.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' bytes';
             }
 
             return formatAsBytes(size(base64String));

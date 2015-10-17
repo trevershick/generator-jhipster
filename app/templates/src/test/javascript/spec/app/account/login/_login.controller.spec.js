@@ -1,3 +1,4 @@
+/* globals describe,beforeEach,it,inject,expect */
 'use strict';
 
 describe('Controllers Tests ', function () {

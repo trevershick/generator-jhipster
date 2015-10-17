@@ -1,3 +1,4 @@
+/* globals describe,beforeEach,inject,it,expect,jasmine */
 'use strict';
 
 describe('<%= entityClass %> Detail Controller', function() {

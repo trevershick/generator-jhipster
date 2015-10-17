@@ -1,3 +1,6 @@
+/* globals beforeEach,window */
+/* exported withMockedAngular */
+'use strict';
 beforeEach(module('<%= angularAppName %>'));
 /**
  * returns a function whose angular will be replaced
@@ -10,5 +13,5 @@ function withMockedAngular(mockAngular, fn) {
         var v = fn.apply(this, arguments);
         window.angular = _angular;
         return v;
-    }
+    };
 }

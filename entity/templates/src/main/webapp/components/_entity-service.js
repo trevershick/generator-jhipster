@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('<%=angularAppName%>')
-    .factory('<%= entityClass %>', function ($resource, DateUtils) {
+    .factory('<%= entityClass %>', function ($resource<% if (fieldsContainLocalDate == true) { %>, DateUtils<% } %>) {
         return $resource('api/<%= entityInstance %>s/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {

@@ -1,3 +1,4 @@
+/* globals describe,beforeEach,inject,it,expect,mockApiAccountCall,mockI18nCalls,jasmine */
 'use strict';
 
 describe('Controllers Tests ', function() {
@@ -23,7 +24,7 @@ describe('Controllers Tests ', function() {
             };
             createController = function() {
                 $injector.get('$controller')('SettingsController', locals);
-            }
+            };
         }));
 
         it('should send the current identity upon save', function() {

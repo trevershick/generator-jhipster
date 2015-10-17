@@ -1,3 +1,4 @@
+/* globals describe,beforeEach,afterEach,inject,it,spyOn,expect */
 'use strict';
 
 describe('Services Tests ', function () {
@@ -17,7 +18,7 @@ describe('Services Tests ', function () {
             $httpBackend.whenGET('scripts/app/main/main.html').respond({});
             $httpBackend.whenGET('scripts/components/navbar/navbar.html').respond({});
 <% if (enableTranslation) { -%>
-            var globalJson = new RegExp('i18n\/.*\/global.json')
+            var globalJson = new RegExp('i18n\/.*\/global.json');
             var mainJson = new RegExp('i18n\/.*\/main.json');
             $httpBackend.whenGET(globalJson).respond({});
             $httpBackend.whenGET(mainJson).respond({});
@@ -37,11 +38,11 @@ describe('Services Tests ', function () {
             //GIVEN
             //Set spy
             spyOn(spiedAuthServerProvider, 'logout').and.callThrough();
-            spyOn(spiedLocalStorageService, "clearAll").and.callThrough();
+            spyOn(spiedLocalStorageService, 'clearAll').and.callThrough();
 
             //WHEN
             authService.logout();
-            //flush the backend to "execute" the request to do the expectedGET assertion.
+            //flush the backend to 'execute' the request to do the expectedGET assertion.
             $httpBackend.flush();
 
             //THEN
@@ -51,11 +52,11 @@ describe('Services Tests ', function () {
           it('should call LocalStorageService.clearAll on logout', function(){
             //GIVEN
             //Set spy
-            spyOn(spiedLocalStorageService, "clearAll").and.callThrough();
+            spyOn(spiedLocalStorageService, 'clearAll').and.callThrough();
 
             //WHEN
             authService.logout();
-            //flush the backend to "execute" the request to do the expectedGET assertion.
+            //flush the backend to 'execute' the request to do the expectedGET assertion.
             $httpBackend.flush();
 
             //THEN

@@ -1,3 +1,4 @@
+/* globals describe,beforeEach,it,expect,mockApiAccountCall,mockI18nCalls,jasmine,inject,withMockedAngular */
 'use strict';
 
 describe('Controller Tests', function() {

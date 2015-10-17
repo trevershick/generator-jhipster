@@ -1,3 +1,4 @@
+/* globals describe,beforeEach,inject,it,expect,mockApiAccountCall,mockI18nCalls,jasmine */
 'use strict';
 
 describe('Controllers Tests ', function() {
@@ -22,7 +23,7 @@ describe('Controllers Tests ', function() {
             };
             createController = function() {
                 $injector.get('$controller')('PasswordController', locals);
-            }
+            };
         }));
 
         it('should show error if passwords do not match', function() {

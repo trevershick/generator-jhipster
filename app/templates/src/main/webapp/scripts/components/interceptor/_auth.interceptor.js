@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('<%=angularAppName%>')<% if (authenticationType == 'oauth2' || authenticationType == 'xauth') { %>
-    .factory('authInterceptor', function ($rootScope, $q, $location, localStorageService) {
+    .factory('authInterceptor', function ($rootScope, $q, $location<% if (authenticationType == 'oauth2' || authenticationType == 'xauth') { %>, localStorageService<%}%>) {
         return {
             // Add authorization token to headers
             request: function (config) {
@@ -24,7 +24,7 @@ angular.module('<%=angularAppName%>')<% if (authenticationType == 'oauth2' || a
         return {
             responseError: function (response) {
                 // token has expired
-                if (response.status === 401 && (response.data.error == 'invalid_token' || response.data.error == 'Unauthorized')) {
+                if (response.status === 401 && (response.data.error === 'invalid_token' || response.data.error === 'Unauthorized')) {
                     localStorageService.remove('token');
                     var Principal = $injector.get('Principal');
                     if (Principal.isAuthenticated()) {
@@ -36,12 +36,12 @@ angular.module('<%=angularAppName%>')<% if (authenticationType == 'oauth2' || a
             }
         };
     })<% } %><% if (authenticationType == 'session') { %>
-    .factory('authExpiredInterceptor', function ($rootScope, $q, $injector, localStorageService) {
+    .factory('authExpiredInterceptor', function ($rootScope, $q, $injector) {
         return {
             responseError: function(response) {
                 // If we have an unauthorized request we redirect to the login page
                 // Don't do this check on the account API to avoid infinite loop
-                if (response.status == 401 && response.data.path !== undefined && response.data.path.indexOf("/api/account") == -1){
+                if (response.status === 401 && response.data.path !== undefined && response.data.path.indexOf('/api/account') === -1){
                     var Auth = $injector.get('Auth');
                     var $state = $injector.get('$state');
                     var to = $rootScope.toState;
